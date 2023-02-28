@@ -68,45 +68,45 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                 ),
                 length=3,
             ),
-            # "categories": tfds.features.Sequence(
-            #     tfds.features.Sequence(
-            #         tfds.features.FeaturesDict(
-            #             {
-            #                 "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
-            #                 "name": tfds.features.Text(),
-            #             }
-            #         )
-            #     ),
-            #     length=3,
-            # ),
-            "categories": tfds.features.FeaturesDict(
-                {
-                    "1": tfds.features.Sequence(
-                        tfds.features.FeaturesDict(
-                            {
-                                "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
-                                "name": tfds.features.Text(),
-                            }
-                        )
-                    ),
-                    "2": tfds.features.Sequence(
-                        tfds.features.FeaturesDict(
-                            {
-                                "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
-                                "name": tfds.features.Text(),
-                            }
-                        )
-                    ),
-                    "3": tfds.features.Sequence(
-                        tfds.features.FeaturesDict(
-                            {
-                                "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
-                                "name": tfds.features.Text(),
-                            }
-                        )
-                    ),
-                }
+            "categories": tfds.features.Sequence(
+                tfds.features.Sequence(
+                    tfds.features.FeaturesDict(
+                        {
+                            "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+                            "name": tfds.features.Text(),
+                        }
+                    )
+                ),
+                length=3,
             ),
+            # "categories": tfds.features.FeaturesDict(
+            #     {
+            #         "1": tfds.features.Sequence(
+            #             tfds.features.FeaturesDict(
+            #                 {
+            #                     "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+            #                     "name": tfds.features.Text(),
+            #                 }
+            #             )
+            #         ),
+            #         "2": tfds.features.Sequence(
+            #             tfds.features.FeaturesDict(
+            #                 {
+            #                     "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+            #                     "name": tfds.features.Text(),
+            #                 }
+            #             )
+            #         ),
+            #         "3": tfds.features.Sequence(
+            #             tfds.features.FeaturesDict(
+            #                 {
+            #                     "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+            #                     "name": tfds.features.Text(),
+            #                 }
+            #             )
+            #         ),
+            #     }
+            # ),
             "objects": tfds.features.Sequence(
                 # tfds.features.Sequence(
                 tfds.features.FeaturesDict(
@@ -307,25 +307,25 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                         )
                     ],
                     "images": [image_camera_1, image_camera_2, image_camera_3],
-                    # "categories": [
-                    #     d_cam.categories()
-                    #     for d_cam in [
-                    #         dapricot_camera_1,
-                    #         dapricot_camera_2,
-                    #         dapricot_camera_3,
-                    #     ]
-                    # ],
-                    "categories": {
-                        # k:v
-                        # for k,v in [
-                        #     dapricot_camera_1.categories(),
-                        #     dapricot_camera_2.categories(),
-                        #     dapricot_camera_3.categories(),
-                        # ]
-                        "1": dapricot_camera_1.categories(),
-                        "2": dapricot_camera_2.categories(),
-                        "3": dapricot_camera_3.categories(),
-                    },
+                    "categories": [
+                        d_cam.categories()
+                        for d_cam in [
+                            dapricot_camera_1,
+                            dapricot_camera_2,
+                            dapricot_camera_3,
+                        ]
+                    ],
+                    # "categories": {
+                    #     # k:v
+                    #     # for k,v in [
+                    #     #     dapricot_camera_1.categories(),
+                    #     #     dapricot_camera_2.categories(),
+                    #     #     dapricot_camera_3.categories(),
+                    #     # ]
+                    #     "1": dapricot_camera_1.categories(),
+                    #     "2": dapricot_camera_2.categories(),
+                    #     "3": dapricot_camera_3.categories(),
+                    # },
                     "objects": [
                         # [
                         #     {
