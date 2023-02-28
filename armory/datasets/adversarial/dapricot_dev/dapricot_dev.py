@@ -125,11 +125,11 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                 # these data only apply to the "green screen patch" objects
                 tfds.features.FeaturesDict(
                     {
-                        "gs_coords": tfds.features.Sequence(
-                            tfds.features.Tensor(
-                                shape=[2], dtype=tf.int64
-                            ),  # green screen vertices in (x,y)
-                        ),
+                        # "gs_coords": tfds.features.Sequence(
+                        #     tfds.features.Tensor(
+                        #         shape=[2], dtype=tf.int64
+                        #     ),  # green screen vertices in (x,y)
+                        # ),
                         "cc_ground_truth": tfds.features.Tensor(
                             shape=[24, 3], dtype=tf.float32
                         ),  # colorchecker color ground truth
@@ -355,7 +355,7 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                     "patch_metadata": [
                         [
                             {
-                                "gs_coords": build_coords(*anno["segmentation"]),
+                                # "gs_coords": build_coords(*anno["segmentation"]),
                                 "cc_ground_truth": get_cc(),
                                 "cc_scene": get_cc(
                                     ground_truth=False, scene=scene, camera=camera + 1
