@@ -125,11 +125,11 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                 # these data only apply to the "green screen patch" objects
                 tfds.features.FeaturesDict(
                     {
-                        # "gs_coords": tfds.features.Sequence(
-                        #     tfds.features.Tensor(
-                        #         shape=[2], dtype=tf.int64
-                        #     ),  # green screen vertices in (x,y)
-                        # ),
+                        "gs_coords": tfds.features.Sequence(
+                            tfds.features.Tensor(
+                                shape=[2], dtype=tf.int64
+                            ),  # green screen vertices in (x,y)
+                        ),
                         "cc_ground_truth": tfds.features.Tensor(
                             shape=[24, 3], dtype=tf.float32
                         ),  # colorchecker color ground truth
@@ -141,6 +141,146 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                 ),
                 length=3,
             ),
+            # "image": tfds.features.FeaturesDict(
+            #     "camera_1": tfds.features.Image(shape=(None, None, 3)),  # encoding_format="jpeg"),
+            #     "camera_2": tfds.features.Image(shape=(None, None, 3)),  # encoding_format="jpeg"),
+            #     "camera_3": tfds.features.Image(shape=(None, None, 3)),  # encoding_format="jpeg"),
+            # ),
+            # "images": tfds.features.FeaturesDict(
+            #     "camera_1": tfds.features.FeaturesDict(
+            #         {
+            #             "file_name": tfds.features.Text(),
+            #             "height": tf.int64,
+            #             "width": tf.int64,
+            #             "id": tf.int64,
+            #         }
+            #     ),
+            #     "camera_2": tfds.features.FeaturesDict(
+            #         {
+            #             "file_name": tfds.features.Text(),
+            #             "height": tf.int64,
+            #             "width": tf.int64,
+            #             "id": tf.int64,
+            #         }
+            #     ),
+            #     "camera_3": tfds.features.FeaturesDict(
+            #         {
+            #             "file_name": tfds.features.Text(),
+            #             "height": tf.int64,
+            #             "width": tf.int64,
+            #             "id": tf.int64,
+            #         }
+            #     ),
+            # ),
+            # "categories": tfds.features.FeaturesDict(
+            #     "camera_1": tfds.features.Sequence(
+            #         tfds.features.FeaturesDict(
+            #             {
+            #                 "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+            #                 "name": tfds.features.Text(),
+            #             }
+            #         )
+            #     ),
+            #     "camera_2": tfds.features.Sequence(
+            #         tfds.features.FeaturesDict(
+            #             {
+            #                 "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+            #                 "name": tfds.features.Text(),
+            #             }
+            #         )
+            #     ),
+            #     "camera_3": tfds.features.Sequence(
+            #         tfds.features.FeaturesDict(
+            #             {
+            #                 "id": tf.int64,  # {'octagon':12, 'diamond':26, 'rect':29}
+            #                 "name": tfds.features.Text(),
+            #             }
+            #         )
+            #     ),
+            # ),
+            # "objects": tfds.features.FeaturesDict(
+            #     "camera_1": tfds.features.Sequence(
+            #         {
+            #             "id": tf.int64,
+            #             "image_id": tf.int64,
+            #             "area": tf.int64,  # un-normalized area
+            #             "boxes": tfds.features.BBoxFeature(),  # normalized bounding box [ymin, xmin, ymax, xmax]
+            #             "labels": tfds.features.ClassLabel(num_classes=91),
+            #             "is_crowd": tf.bool,
+            #         }
+            #     ),
+            #     "camera_2": tfds.features.Sequence(
+            #         {
+            #             "id": tf.int64,
+            #             "image_id": tf.int64,
+            #             "area": tf.int64,  # un-normalized area
+            #             "boxes": tfds.features.BBoxFeature(),  # normalized bounding box [ymin, xmin, ymax, xmax]
+            #             "labels": tfds.features.ClassLabel(num_classes=91),
+            #             "is_crowd": tf.bool,
+            #         }
+            #     ),
+            #     "camera_3": tfds.features.Sequence(
+            #         {
+            #             "id": tf.int64,
+            #             "image_id": tf.int64,
+            #             "area": tf.int64,  # un-normalized area
+            #             "boxes": tfds.features.BBoxFeature(),  # normalized bounding box [ymin, xmin, ymax, xmax]
+            #             "labels": tfds.features.ClassLabel(num_classes=91),
+            #             "is_crowd": tf.bool,
+            #         }
+            #     ),
+            # ),
+            # "patch_metadata": tfds.features.FeaturesDict(
+            #     # these data only apply to the "green screen patch" objects
+            #     "camera_1": tfds.features.FeaturesDict(
+            #         {
+            #             "gs_coords": tfds.features.Sequence(
+            #                 tfds.features.Tensor(
+            #                     shape=[2], dtype=tf.int64
+            #                 ),  # green screen vertices in (x,y)
+            #             ),
+            #             "cc_ground_truth": tfds.features.Tensor(
+            #                 shape=[24, 3], dtype=tf.float32
+            #             ),  # colorchecker color ground truth
+            #             "cc_scene": tfds.features.Tensor(
+            #                 shape=[24, 3], dtype=tf.float32
+            #             ),  # colorchecker colors in a scene
+            #             "shape": tfds.features.Text(),  # "diamond", "rect", "octagon"
+            #         }
+            #     ),
+            #     "camera_2": tfds.features.FeaturesDict(
+            #         {
+            #             "gs_coords": tfds.features.Sequence(
+            #                 tfds.features.Tensor(
+            #                     shape=[2], dtype=tf.int64
+            #                 ),  # green screen vertices in (x,y)
+            #             ),
+            #             "cc_ground_truth": tfds.features.Tensor(
+            #                 shape=[24, 3], dtype=tf.float32
+            #             ),  # colorchecker color ground truth
+            #             "cc_scene": tfds.features.Tensor(
+            #                 shape=[24, 3], dtype=tf.float32
+            #             ),  # colorchecker colors in a scene
+            #             "shape": tfds.features.Text(),  # "diamond", "rect", "octagon"
+            #         }
+            #     ),
+            #     "camera_3": tfds.features.FeaturesDict(
+            #         {
+            #             "gs_coords": tfds.features.Sequence(
+            #                 tfds.features.Tensor(
+            #                     shape=[2], dtype=tf.int64
+            #                 ),  # green screen vertices in (x,y)
+            #             ),
+            #             "cc_ground_truth": tfds.features.Tensor(
+            #                 shape=[24, 3], dtype=tf.float32
+            #             ),  # colorchecker color ground truth
+            #             "cc_scene": tfds.features.Tensor(
+            #                 shape=[24, 3], dtype=tf.float32
+            #             ),  # colorchecker colors in a scene
+            #             "shape": tfds.features.Text(),  # "diamond", "rect", "octagon"
+            #         }
+            #     ),
+            # ),
         }
         # breakpoint()
         # # features["categories"] = features["categories"][0]
@@ -203,7 +343,7 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
             dapricot_camera_1 = DapricotAnnotation(annotation_path_camera_1)
             dapricot_camera_2 = DapricotAnnotation(annotation_path_camera_2)
             dapricot_camera_3 = DapricotAnnotation(annotation_path_camera_3)
-
+            # breakpoint()
             images_camera_1 = dapricot_camera_1.images()
             images_camera_2 = dapricot_camera_2.images()
             images_camera_3 = dapricot_camera_3.images()
@@ -218,7 +358,7 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
             images_camera_3 = sorted(
                 images_camera_3, key=lambda x: x["file_name"].lower()
             )
-
+            breakpoint()
             for image_camera_1, image_camera_2, image_camera_3 in zip(
                 images_camera_1, images_camera_2, images_camera_3
             ):
@@ -295,6 +435,7 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                             header=None,
                         )
 
+                # breakpoint()
                 example = {
                     "image": [
                         os.path.join(
@@ -355,7 +496,7 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                     "patch_metadata": [
                         [
                             {
-                                # "gs_coords": build_coords(*anno["segmentation"]),
+                                "gs_coords": build_coords(*anno["segmentation"]),
                                 "cc_ground_truth": get_cc(),
                                 "cc_scene": get_cc(
                                     ground_truth=False, scene=scene, camera=camera + 1
@@ -379,14 +520,13 @@ class DapricotDev(tfds.core.GeneratorBasedBuilder):
                         )
                     ],
                 }
-
                 yield_id = yield_id + 1
 
                 patch_size = image_camera_1["file_name"].split(".")[
                     0
                 ]  # scene_#_camera_#_<SHAPE>_<HEIGHT>_<DIST>
                 patch_size = patch_size.split("_")[-1].lower()  # <DIST>
-                # breakpoint()
+                breakpoint()
                 if size_dist[size] == patch_size:
                     yield yield_id, example
 
